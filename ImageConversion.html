@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Format Converter</title>
+  <style>
+    .container {
+      padding: 20px;
+    }
+    button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input type="file" id="fileInput" />
+    <select id="formatSelect">
+      <option value="jpeg">JPEG</option>
+      <option value="png">PNG</option>
+      <option value="gif">GIF</option>
+      <option value="bmp">BMP</option>
+      <option value="ico">ICO</option>
+    </select>
+    <button id="convertButton">Convert</button>
+    <button id="downloadButton">Download</button>
+    <p id="outputText"></p>
+  </div>
+
+  <script>
+    let selectedFile = null;
+    let outputFormat = 'jpeg';
+    let convertedFile = null;
+
+    document.getElementById('fileInput').addEventListener('change', handleFileChange);
+    document.getElementById('formatSelect').addEventListener('change', handleFormatChange);
+    document.getElementById('convertButton').addEventListener('click', handleConvert);
+    document.getElementById('downloadButton').addEventListener('click', handleDownload);
+
+    function handleFileChange(event) {
+      selectedFile = event.target.files[0];
+    }
+
+    function handleFormatChange(event) {
+      outputFormat = event.target.value;
+    }
+
+    function handleConvert() {
+      if (!selectedFile) {
+        alert('Please select a file');
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const image = new Image();
+
+        image.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = image.width;
+          canvas.height = image.height;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(image, 0, 0);
+
+          canvas.toBlob((blob) => {
+            const newFile = new File([blob], selectedFile.name.replace(/\.[^/.]+$/, `.${outputFormat}`), {
+              type: `image/${outputFormat}`,
+            });
+
+            convertedFile = newFile;
+            document.getElementById('outputText').textContent = `Converted file: ${convertedFile.name}`;
+          }, `image/${outputFormat}`);
+        };
+
+        image.src = reader.result;
+      };
+
+      reader.readAsDataURL(selectedFile);
+    }
+
+    function handleDownload() {
+      if (!convertedFile) {
+        alert('Please convert a file first');
+        return;
+      }
+
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(convertedFile);
+      link.download = convertedFile.name;
+      link.click();
+    }
+  </script>
+</body>
+</html>
+
+

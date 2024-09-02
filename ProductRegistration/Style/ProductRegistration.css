@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3a3a3a;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    background-color: #505050;
+    padding: 10px;
+}
+.navbar a {
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: 1px solid #000;
+    margin-right: 5px;
+}
+.navbar a:hover {
+    background-color: #404040;
+}
+
+
+.tabs {
+    background-color: #f1f1f1;
+    overflow: hidden;
+}
+
+.tabs a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.tabs a:hover {
+    background-color: #ddd;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 48px); /* Subtract the height of the tabs */
+}
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #4a4a4a;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%; /* Add this line to make the button fill its div */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    justify-content: flex-end; /* Change this line to align the search bar to the left */
+}
+
+#search-input {
+    width: 20%;
+    padding: 10px;
+    font-size: 16px;
+    
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #000;
+
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #888;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color:#f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Add this CSS to align the checkbox and label */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 20px;
+}
+
+#amend {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#amend + label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px; /* Adjust as needed */
+}

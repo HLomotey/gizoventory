@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Taking</title>
+    <link rel="stylesheet" href="../StockTaking/Style/StockTaking.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="../index.html">HomePage</a>
+        <a href="./ProductCategory.html">Registration</a>
+        <a href="./StockReceived.html">Inventory Management</a>
+        <a href="#">Configuration</a>
+    </div>
+    <div class="tabs">
+        <a href="./StockReceived.html">Receive Into Inventory</a>
+        <a href="./StockIssues.html">Issue Out of Inventory</a>
+        <a href="./StockTaking.html">Stock Taking</a>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <form id="stock-issues-form">
+                <label for="productName">Product Name:</label>
+                <select id="productName">
+                    <!-- Options will be populated from productName.js -->
+                </select>
+                
+                <label for="tradeDate">Trade Date</label>
+                <input type="date" id="tradeDate" placeholder="Enter Issue Date">
+                <label for="stockInRecords">Stock In Records</label>
+                <input type="number" id="stockInRecords" placeholder="Enter stock In Records">
+               
+                <label for="verifiedStockTaking">Verified Stock Taking</label>
+                <input type="number" id="verifiedStockTaking" placeholder="Enter verified stock taking">
+              
+             
+                <div >
+                    <input type="checkbox" id="amend" onclick="toggleAmendMode()">
+                    <label for="amend" style="margin-left: 5px;">Edit Entries</label>
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
+            </div>
+            <table id="StockIssues-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Trade Date</th>
+                        <th>Stock In Records</th>
+                        <th>Verified Stock Taking</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../StockTaking/Script/StockTaking.js"></script>
+</body>
+</html>
+
+

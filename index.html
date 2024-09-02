@@ -1,0 +1,113 @@
+<html>
+ <head>
+  <title>
+   Management System
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="./Index/Style/index.css">
+  <style>
+    .nav a.active {
+      background-color: #ddd;
+      color: black;
+    }
+  </style>
+ </head>
+ <body>
+    <div class="header">
+     Inventory Management System || LoggedIn User -
+     <span>
+      Hilary
+     </span>
+     || User Role -
+     <span>
+      Administrator
+     </span>
+     || LoggedIn at
+     <span>
+      02-Sep-24 11:55:46 AM
+     </span>
+    </div>
+    <div class="nav">
+     <a href="#" class="nav-link">HomePage</a>    
+     <a href="./ProductCategory.html" id="registration-link" class="nav-link">Registration</a>
+     <a href="./StockReceived.html" class="nav-link">Inventory Management</a>
+     <a href="#" class="nav-link">Configuration</a>
+     <a href="#" class="nav-link">
+      <i class="fas fa-cog">
+      </i>
+     </a>
+    </div>
+    <div class="content">
+     <div class="sidebar">
+      <div class="notifications">
+       NOTIFICATIONS
+      </div>
+      <div class="login-credentials">
+       <div>
+        LOGIN CREDENTIALS
+       </div>
+       <div>
+        USERNAME
+       </div>
+       <input type="text"/>
+       <div>
+        PASSWORD
+       </div>
+       <input type="password"/>
+       <div class="loggedon">
+        <input type="checkbox"/>
+        LoggedOn
+       </div>
+      </div>
+     </div>
+     <div class="main">
+      <div class="footer">
+       <div class="tiles">
+        <div class="tile">
+         No Of Products
+        </div>
+        <div class="tile">
+         Total Issues
+        </div>
+        <div class="tile">
+         Total Received
+        </div>
+        <div class="tile">
+         Top Supplier
+        </div>
+        <div class="tile">
+         Out of Stock
+        </div>
+        <div class="tile">
+         Total Suppliers
+        </div>
+        <div class="tile">
+         Department with Low Stock
+        </div>
+       </div>
+      </div>
+      <div class="login-section">
+       <img alt="Login screen with inventory shelves in the background" height="400" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-Hh5RPsKhtBPsWCFSiEKnUJ6x/user-8qgiVpCV0U0b7zDjfFInHgjl/img-94ylO5FkiQD0XNT9Iw6oqi0e.png?st=2024-09-02T18%3A52%3A08Z&amp;se=2024-09-02T20%3A52%3A08Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-01T23%3A36%3A58Z&amp;ske=2024-09-02T23%3A36%3A58Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=sOFFbPB8bAv7gkpgZ8XgN1NySk%2BN7gxfntt0guWhcos%3D" width="800"/>
+      </div>
+     </div>
+    </div>
+    <div class="footer">
+    
+     <div class="contact">
+      Developed by The xIPro...For all enquiries please contact 0548-353-466...xIProconsultancy@gmail.com
+     </div>
+    </div>
+   </body>
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</html>

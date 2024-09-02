@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2d2d2d;
+    color: #fff;
+}
+.header {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+.header span {
+    color: #ffcc00;
+}
+.nav {
+    display: flex;
+    background-color: #444;
+    padding: 10px;
+}
+.nav a {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+}
+.nav a:hover {
+    background-color: #555;
+}
+.content {
+    display: flex;
+    height: calc(100vh - 100px);
+}
+.sidebar {
+    width: 20%;
+    background-color: #666;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.main {
+    width: 80%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.notifications {
+    background-color: #888;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%; /* Add this line */
+}
+.login-section img {
+    width: 100%;
+    height: 100%; /* Change from 'auto' to '100%' */
+    object-fit: cover; /* Add this line */
+}
+.login-credentials {
+    width: 100%;
+    background-color: #888;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.login-credentials input {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+.login-credentials .loggedon {
+    display: flex;
+    align-items: center;
+}
+.login-credentials .loggedon input {
+    width: auto;
+    margin-right: 5px;
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #888;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.footer .tiles {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.footer .tile {
+    width: 13%;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+.footer .tile:nth-child(1) { background-color: #00cc66; }
+.footer .tile:nth-child(2) { background-color: #ff6600; }
+.footer .tile:nth-child(3) { background-color: #0033cc; }
+.footer .tile:nth-child(4) { background-color: #cc6699; }
+.footer .tile:nth-child(5) { background-color: #9933cc; }
+.footer .tile:nth-child(6) { background-color: #33cc99; }
+.footer .tile:nth-child(7) { background-color: #009966; }
+.footer .contact {
+    font-size: 12px;
+}

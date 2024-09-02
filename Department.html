@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Category</title>
+    <link rel="stylesheet" href="./Department/Style/Department.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="../index.html">HomePage</a>
+        <a href="./ProductCategory.html">Registration</a>
+        <a href="./StockIssues.html">Inventory Management</a>
+        <a href="#">Configuration</a>
+    </div>
+
+    <div class="tabs">
+        <a href="./ProductCategory.html">Product Category</a>
+        <a href="./ProductRegistration.html">Product Registration</a>
+        <a href="./Suppliers.html">Suppliers</a>
+        <a href="./Department.html">Department</a>
+       
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <label for="departmentInput">Department</label>
+            <input type="text" id="departmentInput" placeholder="Enter department name">
+           
+            <div class="checkbox-container">
+                <input type="checkbox" id="amend"> Amend
+                <label for="amend">Amend Existing Entry</label>
+            </div>
+            <button id="saveButton">Save Changes</button>
+       
+          
+        </div>
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
+            </div>
+            <table id="departmentTable">
+                <thead>
+                    <tr>
+                        <th>Department Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../Department/Script/Department.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

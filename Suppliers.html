@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>Suppliers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Supplier/Style/Supplier.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="../index.html">HomePage</a>
+        <a href="./ProductCategory.html">Registration</a>
+        <a href="./StockReceived.html">Inventory Management</a>
+        <a href="#">Configuration</a>
+    </div>
+    <div class="tabs">
+        <a href="./ProductCategory.html">Product Category</a>
+        <a href="./ProductRegistration.html">Product Registration</a>
+        <a href="./Suppliers.html">Suppliers</a>
+        <a href="./Department.html">Department</a>
+       
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <label for="supplierInput">Supplier</label>
+            <input type="text" id="supplierInput" autocomplete="organization">
+            
+            <label for="addressInput">Address</label>
+            <textarea id="addressInput" rows="4" autocomplete="street-address"></textarea>
+            
+            <label for="contactInput">Contact</label>
+            <input type="text" id="contactInput" autocomplete="name">
+            
+            <label for="emailInput">Email</label>
+            <input type="email" id="emailInput" autocomplete="email">
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="amend">
+                <label for="amend">Amend Existing Entry</label>
+            </div>
+            
+            <button id="saveButton">Save Changes</button>
+        </div>
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
+            </div>
+            <table id="suppliers-table">
+                <thead>
+                    <tr>
+                        <th>Supplier</th>
+                        <th>Address</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+ 
+    <script src="../Supplier/script/supplier.js"></script>
+    <script>
+        function showRegistrationTabs() {
+            document.getElementById('stock-issues-tab').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
