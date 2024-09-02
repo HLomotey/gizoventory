@@ -62,7 +62,7 @@ app.get('/api/get-categories', (req, res) => {
     });
 });
 app.get('/api/get-products', (req, res) => {
-   res.send('Hello World');
+   res.send('Hello Getting Product');
   
 });
 
