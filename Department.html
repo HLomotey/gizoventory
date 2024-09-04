@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department Category</title>
-    <link rel="stylesheet" href="./Department/Style/Department.css">
+    <title>Department</title>
+    <link rel="stylesheet" href="../registration/style/department.css">
+    
 </head>
 <body>
     <div class="navbar">
         <a href="../index.html">HomePage</a>
-        <a href="./ProductCategory.html">Registration</a>
-        <a href="./StockIssues.html">Inventory Management</a>
-        <a href="#">Configuration</a>
+        <a href="./productRegistration.html">Registration</a>
+        <a href="./stockIssues.html">Inventory Management</a>
+        <a href="./configuration.html">Configuration</a>
     </div>
 
     <div class="tabs">
-        <a href="./ProductCategory.html">Product Category</a>
-        <a href="./ProductRegistration.html">Product Registration</a>
-        <a href="./Suppliers.html">Suppliers</a>
-        <a href="./Department.html">Department</a>
+        <a href="./productCategory.html">Product Category</a>
+        <a href="./productRegistration.html">Product Registration</a>
+        <a href="./suppliers.html">Suppliers</a>
+        <a href="./department.html">Department</a>
        
     </div>
     <div class="container">
@@ -27,7 +28,7 @@
             <input type="text" id="departmentInput" placeholder="Enter department name">
            
             <div class="checkbox-container">
-                <input type="checkbox" id="amend"> Amend
+                <input type="checkbox" id="amend"> 
                 <label for="amend">Amend Existing Entry</label>
             </div>
             <button id="saveButton">Save Changes</button>
@@ -36,21 +37,39 @@
         </div>
         <div class="main-content">
             <div class="search-bar">
+                <button id="deleteButton">Delete Selected Items</button>
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
             <table id="departmentTable">
                 <thead>
                     <tr>
-                        <th>Department Name</th>
+                        <th><input type="checkbox" id="selectAll"></th>
+                        <th>Product Category</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Dynamic rows will be inserted here -->
                 </tbody>
             </table>
+
+           
+        </div>
+       
+    </div>
+    <div id="deleteModal" class="modal" style="display: none;">
+        <div class="modal-header">
+            <span>Confirm Deletion</span>
+            <button class="close">X</button>
+        </div>
+        <div class="modal-body">
+            <p>Do you want to delete the selected items?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="confirmDelete">Yes</button>
+            <button id="cancelDelete">No</button>
         </div>
     </div>
-    <script src="../Department/Script/Department.js"></script>
+    <script src="../registration/script/department.js"></script>
 </body>
 </html>
 

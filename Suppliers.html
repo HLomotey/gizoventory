@@ -2,35 +2,39 @@
 <head>
     <title>Suppliers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Supplier/Style/Supplier.css">
+    <link rel="stylesheet" href="../inventory/style/supplier.css">
+  
 </head>
 <body>
     <div class="navbar">
         <a href="../index.html">HomePage</a>
-        <a href="./ProductCategory.html">Registration</a>
-        <a href="./StockReceived.html">Inventory Management</a>
-        <a href="#">Configuration</a>
+        <a href="./productRegistration.html">Registration</a>
+        <a href="./stockReceived.html">Inventory Management</a>
+        <a href="./configuration.html">Configuration</a>
     </div>
     <div class="tabs">
-        <a href="./ProductCategory.html">Product Category</a>
-        <a href="./ProductRegistration.html">Product Registration</a>
-        <a href="./Suppliers.html">Suppliers</a>
-        <a href="./Department.html">Department</a>
+        <a href="./productCategory.html">Product Category</a>
+        <a href="./productRegistration.html">Product Registration</a>
+        <a href="./suppliers.html">Suppliers</a>
+        <a href="./department.html">Department</a>
        
     </div>
     <div class="container">
         <div class="sidebar">
-            <label for="supplierInput">Supplier</label>
-            <input type="text" id="supplierInput" autocomplete="organization">
+            <label for="supplier">Supplier</label>
+            <input type="text" id="supplier" autocomplete="organization">
             
-            <label for="addressInput">Address</label>
-            <textarea id="addressInput" rows="4" autocomplete="street-address"></textarea>
+                <label for="address">Address</label>
+                <textarea id="address" rows="4" autocomplete="street-address"></textarea>
             
-            <label for="contactInput">Contact</label>
-            <input type="text" id="contactInput" autocomplete="name">
+                <label for="location">Location</label>
+                    <textarea id="location" rows="5" autocomplete="location"></textarea>
+
+                <label for="contact">Contact</label>
+            <input type="text" id="contact" autocomplete="name">
             
-            <label for="emailInput">Email</label>
-            <input type="email" id="emailInput" autocomplete="email">
+                <label for="email">Email</label>
+            <input type="email" id="email" autocomplete="email">
             
             <div class="checkbox-container">
                 <input type="checkbox" id="amend">
@@ -41,13 +45,16 @@
         </div>
         <div class="main-content">
             <div class="search-bar">
+               <button id="deleteButton">Delete Selected Items</button>
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
             <table id="suppliers-table">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
                         <th>Supplier</th>
                         <th>Address</th>
+                        <th>Location</th>
                         <th>Contact</th>
                         <th>Email</th>
                     </tr>
@@ -59,11 +66,7 @@
         </div>
     </div>
  
-    <script src="../Supplier/script/supplier.js"></script>
-    <script>
-        function showRegistrationTabs() {
-            document.getElementById('stock-issues-tab').style.display = 'none';
-        }
-    </script>
+    <script src="../inventory/script/supplier.js"></script>
+   
 </body>
 </html>

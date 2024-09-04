@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Role</title>
+   
+    <link rel="stylesheet" href="../adminConfig/Style/userRole.css">
+    <link rel="stylesheet" href="../generalPurpose/generalPurpose.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="../index.html">HomePage</a>
+        <a href="./ProductCategory.html">Registration</a>
+        <a href="./StockReceived.html">Inventory Management</a>
+        <a href="./configuration.html">Configuration</a>
+    </div>
+    <div class="tabs">
+        <a href="./passwordChange.html">Password Change</a>
+        <a href="./adminConfiguration.html">Administrative Configuration</a>  
+       
+    </div>
+
+   
+    <div class="header">
+        <a href="./userRole.html">User Roles</a>
+        <a href="./systemUsers.html">System Users</a>
+        <a href="./userAccessControl.html">User Access Control</a>   
+        <a href="./passwordPolicy.html">Password Configuration</a>   
+        <a href="./systemBackup.html">System BackUp</a>
+        <a href="./auditTrail.html">Audit Trail</a>
+    </div>
+
+   <!-- Add a container for the userRole content -->
+   <div id="userRoleContent">
+    <div class="container">
+        <div class="sidebar">
+            <label for="userRoleInput">User Role</label>
+            <input type="text" id="userRoleInput" placeholder="Enter UserRole">
+           
+            <div class="checkbox-container">
+                <input type="checkbox" id="amend"> 
+                <label for="amend">Amend Existing Entry</label>
+            </div>
+            <button id="saveButton">Save</button>
+        </div>
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search UserRole">
+            </div>
+            <table id="userRoleTable">
+                <thead>
+                    <tr>
+                        <th>User Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="../generalPurpose/generalPurpose.js"></script>
+    <script src="../adminConfig/Script/userRole.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Category</title>
-    <link rel="stylesheet" href="../Supplier/Style/Supplier.css">
+    <link rel="stylesheet" href="../registration/style/productCategory.css">
+
 </head>
 <body>
     <div class="navbar">
         <a href="../index.html">HomePage</a>
-        <a href="./ProductCategory.html">Registration</a>
-        <a href="./StockReceived.html">Inventory Management</a>
-        <a href="#">Configuration</a>
+        <a href="./productRegistration.html">Registration</a>
+        <a href="./stockIssues.html">Inventory Management</a>
+        <a href="./configuration.html">Configuration</a>
     </div>
 
     <div class="tabs">
-        <a href="./ProductCategory.html">Product Category</a>
-        <a href="./ProductRegistration.html">Product Registration</a>
-        <a href="./Suppliers.html">Suppliers</a>
-        <a href="./Department.html">Department</a>
+        <a href="./productCategory.html">Product Category</a>
+        <a href="./productRegistration.html">Product Registration</a>
+        <a href="./suppliers.html">Suppliers</a>
+        <a href="./department.html">Department</a>
        
     </div>
     <div class="container">
@@ -27,7 +28,7 @@
             <input type="text" id="categoryInput" placeholder="Enter category name">
            
             <div class="checkbox-container">
-                <input type="checkbox" id="amend"> Amend
+                <input type="checkbox" id="amend"> 
                 <label for="amend">Amend Existing Entry</label>
             </div>
             <button id="saveButton">Save Changes</button>
@@ -36,21 +37,26 @@
         </div>
         <div class="main-content">
             <div class="search-bar">
+                <button id="deleteButton">Delete Selected Items</button>
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
             <table id="categoryTable">
                 <thead>
                     <tr>
-                        <th>Category Name</th>
+                        <th><input type="checkbox" id="selectAll"></th>
+                        <th>Product Category</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Dynamic rows will be inserted here -->
                 </tbody>
             </table>
+
+           
         </div>
     </div>
-    <script src="../ProductCategory/Script/ProductCategory.js"></script>
+    <script src="../registration/Script/productCategory.js"></script>
+   
 </body>
 </html>
 

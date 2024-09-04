@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrative Configuration</title>
+    <link rel="stylesheet" href="../adminConfig/Style/adminConfiguration.css">
+  
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html">HomePage</a>
+        <a href="./productRegistration.html">Registration</a>
+        <a href="./stockIssues.html">Inventory Management</a>
+        <a href="./configuration.html">Configuration</a>
+    </nav>
+
+    <nav class="tabs">
+        <a href="./passwordChange.html">Password Change</a>
+        <a href="./userRole.html" id="adminConfigTab">Administrative Configuration</a>
+    </nav>
+
+    <nav class="header">
+        <a href="./userRole.html">User Roles</a>
+        <a href="./systemUsers.html">System Users</a>
+        <a href="./userAccessControl.html">User Access Control</a>  
+        <a href="./passwordPolicy.html">Password Configuration</a>  
+        <a href="./systemBackup.html">System BackUp</a>
+        <a href="./auditTrail.html">Audit Trail</a>
+    </nav>
+
+    <div id="userRoleContent">
+        <div class="container">
+            <div class="sidebar">
+                <label for="userRoleInput">User Role</label>
+                <input type="text" id="userRoleInput" placeholder="Enter UserRole">
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="amend">
+                    <label for="amend">Amend Existing Entry</label>
+                </div>
+                <button id="saveButton">Save Changes</button>
+            </div>
+            <div class="main-content">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search UserRole..." onkeyup="filterTable()">
+                </div>
+                <table id="UserRoleTable">
+                    <thead>
+                        <tr>
+                            <th>User Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const navLinks = document.querySelectorAll('.nav-link');
+          
+          navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              navLinks.forEach(l => l.classList.remove('active'));
+              this.classList.add('active');
+            });
+          });
+        });
+      </script>
+    <script src="../adminConfig/Script/userRole.js"></script>
+   
+    <script src="../adminConfig/script/adminConfiguration.js"></script>
+</body>
+</html>

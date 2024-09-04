@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Registration</title>
-    <link rel="stylesheet" href="../ProductRegistration/Style/ProductRegistration.css">
+    <link rel="stylesheet" href="../registration/style/productRegistration.css">
+   
 </head>
 <body>
     <div class="navbar">
         <a href="../index.html">HomePage</a>
-        <a href="./ProductCategory.html">Registration</a>
-        <a href="./StockReceived.html">Inventory Management</a>
-        <a href="#">Configuration</a>
+        <a href="./productCategory.html">Registration</a>
+        <a href="./stockReceived.html">Inventory Management</a>
+        <a href="./configuration.html">Configuration</a>
     </div>
     
     <div class="tabs">
-        <a href="./ProductCategory.html">Product Category</a>
-        <a href="./ProductRegistration.html">Product Registration</a>
-        <a href="./Suppliers.html">Suppliers</a>
-        <a href="./Department.html">Department</a>
+        <a href="./productCategory.html">Product Category</a>
+        <a href="./productRegistration.html">Product Registration</a>
+        <a href="./suppliers.html">Suppliers</a>
+        <a href="./department.html">Department</a>
       
     </div>
     <div class="container">
         <div class="sidebar">
             <form id="product-registration-form">
+                
                 <label for="productCategory">Product Category</label>
                 <select id="productCategory">
                     <!-- Options will be populated from ProductCategory.js -->
@@ -45,11 +47,13 @@
         </div>
         <div class="main-content">
             <div class="search-bar">
+                <button id="deleteButton">Delete Selected Items</button>
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
             <table id="products-table">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
                         <th>Category</th>
                         <th>Name</th>
                         <th>Unit of Issue</th>
@@ -62,7 +66,8 @@
             </table>
         </div>
     </div>
-    <script src="../ProductRegistration/Script/ProductRegistration.js"></script>
+    <script src="../registration/script/productRegistration.js"></script>
+    <script src="../adminConfig/Script/userRole.js"></script>
 </body>
 </html>
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Users</title>
+    <link rel="stylesheet" href="adminConfig/Style/systemUsers.css">
+ 
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="../index.html">HomePage</a>
+        <a href="./productRegistration.html">Registration</a>
+        <a href="./StockReceived.html">Inventory Management</a>
+        <a href="./configuration.html">Configuration</a>
+    </div>
+
+    <div class="tabs">
+        <a href="./passwordChange.html">Password Change</a>
+        <a href="./adminConfiguration.html">Administrative Configuration</a>  
+       
+    </div>
+   
+    <div class="header">
+        <a href="./userRole.html">User Roles</a>
+        <a href="./systemUsers.html">System Users</a>
+        <a href="./userAccessControl.html">User Access Control</a>   
+        <a href="./passwordPolicy.html">Password Configuration</a>   
+        <a href="./systemBackup.html">System BackUp</a>
+        <a href="./auditTrail.html">Audit Trail</a>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+          
+            <div class="form-group">
+                <label for="username">System UserName</label>
+                <input type="text" id="username" value="Hilary">
+            </div>
+            
+            <div class="form-group">
+                <label for="userrole">User Role</label>
+                <select id="userrole">
+                    <!-- Options will be populated from userRole.js -->
+                </select>              
+            </div>
+            
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" value="">
+            </div>
+          
+            <div class="form-group">
+                <label for="password-expiry">Password Expiry (In Month)</label>
+                <input type="text" id="password-expiry" value="">
+            </div>
+            <div class="form-group checkbox">
+                <input type="checkbox" id="specify-date">
+                <label for="specify-date">Specify Date to Override Expiry Date</label>
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Set Specific Expiry Date</label>
+                <input type="date" id="expiry-date" value="">
+            </div>
+            <div class="form-group checkbox">
+                <input type="checkbox" id="enforce-password">
+                <label for="enforce-password">Enforce Password Expiry</label>
+            </div>
+            <div class="form-group">
+                <label for="idletime">IdleTime (In Minutes)</label>
+                <input type="text" id="idletime" value="">
+            </div>
+            <div class="form-group checkbox">
+                <input type="checkbox" id="amend-user">
+                <label for="amend-user">Amend System User</label>
+               
+            </div>
+            <div class="form-group">
+                <button class="save-button">Save Changes</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
+            </div>
+            <table id="systemUsers-table">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>UserRole</th>
+                        <th>Expiry Date</th>                        
+                        <th>Email Address</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="adminConfig/Script/systemUsers.js"></script>
+
+</body>
+</html>
+
+
