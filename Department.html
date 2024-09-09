@@ -12,6 +12,7 @@
         <a href="../index.html">HomePage</a>
         <a href="./productRegistration.html">Registration</a>
         <a href="./stockIssues.html">Inventory Management</a>
+        <a href="./excelUpload.html">Excel Upload</a>
         <a href="./configuration.html">Configuration</a>
     </div>
 
@@ -69,6 +70,18 @@
             <button id="cancelDelete">No</button>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const navLinks = document.querySelectorAll('.nav-link');
+          
+          navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              navLinks.forEach(l => l.classList.remove('active'));
+              this.classList.add('active');
+            });
+          });
+        });
+      </script>
     <script src="../registration/script/department.js"></script>
 </body>
 </html>

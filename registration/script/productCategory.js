@@ -139,6 +139,10 @@ function deleteSelectedItems() {
         localStorage.setItem('productCategories', JSON.stringify(categories));
         loadProductCategories();
         showMessage(`${checkboxes.length} item(s) have been deleted.`);
+          // Log the action in the audit trail
+          const actionTaken = `Deleted product categories: ${deletedCategories.join(', ')}`;
+          saveAuditTrail(actionTaken);
+  
     }
 }
 

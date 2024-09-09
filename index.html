@@ -1,109 +1,92 @@
 <html>
- <head>
-  <title>
-   Gizo Inventory Management System
-  </title>
- 
-  <link rel="stylesheet" href="./Index/Style/index.css">
-  <link rel="stylesheet" href="../generalPurpose/generalPurpose.css">
- 
- </head>
- <body>
+  <head>
+    <title>Gizo Inventory Management System</title>
+    <link rel="stylesheet" href="./Index/Style/index.css">
+    <link rel="stylesheet" href="../generalPurpose/generalPurpose.css">
+    
+  </head>
+  <body>
     <div class="header">
-     Inventory Management System || LoggedIn User -
-     <span>
-      Hilary
-     </span>
-     || User Role -
-     <span>
-      Administrator
-     </span>
-     || LoggedIn at
-     <span>
-      02-Sep-24 11:55:46 AM
-     </span>
+      Inventory Management System || LoggedIn User - 
+      <span id="loggedInUser">Not logged in</span>
+      || User Role - 
+      <span id="userRole">Guest</span>
+      || LoggedIn at 
+      <span id="loginTime">N/A</span>
     </div>
-    <div class="nav">
-     <a href="#" class="nav-link">HomePage</a>    
-     <a href="./productRegistration.html" id="registration-link" class="nav-link">Registration</a>
-     <a href="./StockReceived.html" class="nav-link">Inventory Management</a>
-     <a href="./configuration.html" class="nav-link">Configuration</a>
-     <a href="#" class="nav-link">
-      <i class="fas fa-cog">
-      </i>
-     </a>
+    <div class="nav" id="navMenu">
+      <a href="./index.html" class="nav-link">HomePage</a>    
+      <a href="./productRegistration.html" id="registration-link" class="nav-link">Registration</a>
+      <a href="./StockReceived.html" class="nav-link">Inventory Management</a>
+      <a href="./excelUpload.html" class="nav-link">Excel Upload</a>
+      <a href="./configuration.html" class="nav-link">Configuration</a>
+      <a href="#" class="nav-link">
+        <i class="fas fa-cog"></i>
+      </a>
     </div>
     <div class="content">
-     <div class="sidebar">
-      <div class="notifications">
-       NOTIFICATIONS
+      <div class="sidebar">
+        <div class="login-credentials">
+          <div class="login-credentials-title">
+            LOGIN CREDENTIALS
+          </div>
+          <div class="login-credentials-label">
+            USERNAME
+          </div>
+          <input type="text" id="username" placeholder="Enter Username" autocomplete="off"/>
+          <div>
+            PASSWORD
+          </div>
+          <input type="password" id="password" placeholder="Enter Password" autocomplete="off" />
+          <button id="loginButton">Login</button>
+        </div>
+        <div class="status">
+          <div class="status-left">
+            <label for="keepLoggedIn" id="status-text">User SignedOut</label>
+            <label class="toggle-switch">
+              <input type="checkbox" id="keepLoggedIn">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
       </div>
-      <div class="login-credentials">
-       <div>
-        LOGIN CREDENTIALS
-       </div>
-       <div>
-        USERNAME
-       </div>
-       <input type="text" placeholder="Enter Username"/>
-       <div>
-        PASSWORD
-       </div>
-       <input type="password" placeholder="Enter Password"/>
-       <div class="loggedon">
-        <input type="checkbox"/>
-        LoggedOn
-       </div>
+      <div class="main">
+        <div class="footer">
+          <div class="tiles">
+            <div class="tile">
+              No Of Products
+            </div>
+            <div class="tile">
+              Total Issues
+            </div>
+            <div class="tile">
+              Total Received
+            </div>
+            <div class="tile">
+              Top Supplier
+            </div>
+            <div class="tile">
+              Out of Stock
+            </div>
+            <div class="tile">
+              Total Suppliers
+            </div>
+            <div class="tile">
+              Department with Low Stock
+            </div>
+          </div>
+        </div>
+        <div class="login-section">
+          <img src="./assets/images/inventory login.jpg" />
+        </div>
       </div>
-     </div>
-     <div class="main">
-      <div class="footer">
-       <div class="tiles">
-        <div class="tile">
-         No Of Products
-        </div>
-        <div class="tile">
-         Total Issues
-        </div>
-        <div class="tile">
-         Total Received
-        </div>
-        <div class="tile">
-         Top Supplier
-        </div>
-        <div class="tile">
-         Out of Stock
-        </div>
-        <div class="tile">
-         Total Suppliers
-        </div>
-        <div class="tile">
-         Department with Low Stock
-        </div>
-       </div>
-      </div>
-      <div class="login-section">
-       <img  src="./assets/images/inventory login.jpg" />
-      </div>
-     </div>
     </div>
     <div class="footer">
-    
-     <div class="contact">
-      Developed by The xIPro...For all enquiries please contact 0548-353-466...xIProconsultancy@gmail.com
-     </div>
+      <div class="contact">
+        <div id="scrollingText" class="scrolling-text">Developed by The xIPro...For all enquiries please contact 0548-353-466...xIProconsultancy@gmail.com</div>
+      </div>
     </div>
-   </body>
-   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const navLinks = document.querySelectorAll('.nav-link');
-      
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          navLinks.forEach(l => l.classList.remove('active'));
-          this.classList.add('active');
-        });
-      });
-    });
-  </script>
+    <script src="./Index/Script/index.js"></script>
+    
+  </body>
 </html>

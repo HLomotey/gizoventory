@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Upload</title>
+    <link rel="stylesheet" href="../excelUpload/style/excelUpload.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="../index.html">HomePage</a>
+        <a href="./productRegistration.html">Registration</a>
+        <a href="./StockReceived.html">Inventory Management</a>
+        <a href="./excelUpload.html">Excel Upload</a>
+        <a href="./configuration.html">Configuration</a>
+    </div>
+  
+    <div class="container">
+        <div class="sidebar">
+            <button id="uploadButton">Upload Data from Excel</button>
+            <h3>Type of Data To Upload</h3>
+            <label><input type="radio" name="data-type" value="Product Register" data-sheet="Product Register"> Product Register</label>
+            <label><input type="radio" name="data-type" value="Stock Issued" data-sheet="Stock Issued"> Stock Issued</label>
+            <label><input type="radio" name="data-type" value="Stock Received" data-sheet="Stock Received"> Stock Received</label>
+            <label><input type="radio" name="data-type" value="Stock Taking" data-sheet="Stock Taking"> Stock Taking</label>
+            <label><input type="radio" name="data-type" value="Supplier" data-sheet="Supplier"> Supplier</label>
+         
+          
+        </div>
+        <div class="main-content">
+           
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
+                <h2 id="selectedDataType"></h2>
+                <button id="saveButton">Save Uploaded Data from Excel</button>
+            </div>
+            <table id="excelUpload-table">
+                <thead>
+                    <tr>
+                        <th class="select-all-header"><input type="checkbox" id="selectAll"></th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../excelUpload/script/excelUpload.js"></script>
+    
+</body>
+</html>
+
+

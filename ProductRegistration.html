@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Registration</title>
     <link rel="stylesheet" href="../registration/style/productRegistration.css">
-   
 </head>
 <body>
     <div class="navbar">
         <a href="../index.html">HomePage</a>
         <a href="./productCategory.html">Registration</a>
         <a href="./stockReceived.html">Inventory Management</a>
+        <a href="./excelUpload.html">Excel Upload</a>
         <a href="./configuration.html">Configuration</a>
     </div>
     
@@ -20,27 +20,25 @@
         <a href="./productRegistration.html">Product Registration</a>
         <a href="./suppliers.html">Suppliers</a>
         <a href="./department.html">Department</a>
-      
     </div>
     <div class="container">
         <div class="sidebar">
             <form id="product-registration-form">
-                
-                <label for="productCategory">Product Category</label>
-                <select id="productCategory">
+                <label for="productCategoryatreg">Product Category</label>
+                <select id="productCategoryatreg">
                     <!-- Options will be populated from ProductCategory.js -->
                 </select>
-                <label for="productName">Product Name</label>
-                <input type="text" id="productName" placeholder="Enter product name" required>
+                <label for="main-product-name">Product Name</label>
+                <input type="text" id="main-product-name" placeholder="Enter product name" required>
                 <label for="unitOfIssue">Unit of Issue</label>
                 <input type="text" id="unitOfIssue" placeholder="Enter unit of issue">
                 <label for="reorderQuantity">ReOrder Quantity</label>
                 <input type="number" id="reorderQuantity" placeholder="Enter reorder quantity">
                 <label for="productImage">Product Image</label>
                 <input type="file" id="productImage">
-                <div >
+                <div>
                     <input type="checkbox" id="amend" onclick="toggleAmendMode()">
-                    <label for="amend" >Edit Entries</label>
+                    <label for="amend">Edit Entries</label>
                 </div>
                 <button type="submit">Save Changes</button>
             </form>
@@ -67,7 +65,7 @@
         </div>
     </div>
     <script src="../registration/script/productRegistration.js"></script>
-    <script src="../adminConfig/Script/userRole.js"></script>
+    
 </body>
 </html>
 

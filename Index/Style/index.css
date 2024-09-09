@@ -33,13 +33,9 @@ body {
     height: calc(100vh - 100px);
 }
 .sidebar {
-    width: 20%;
-    background-color: #666;
-    padding: 10px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    height: 100%;
 }
 .main {
     width: 80%;
@@ -59,32 +55,121 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 80%; /* Add this line */
+    height: 80%;
 }
 .login-section img {
     width: 100%;
-    height: 100%; /* Change from 'auto' to '100%' */
-    object-fit: cover; /* Add this line */
+    height: 100%;
+    object-fit: cover;
 }
 .login-credentials {
     width: 100%;
     background-color: #888;
-    padding: 10px;
+    padding: 10px; /* Reduced padding */
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Reduced gap */
+    min-height: auto; /* Remove minimum height */
+    margin-top: auto; /* Push to the bottom */
+}
+status {
+    margin-top: auto;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+.login-credentials-title {
+    font-size: 14px; /* Slightly reduced font size */
+    font-weight: bold;
+    margin-bottom: 10px; /* Reduced margin */
+    text-align: left;
+}
+.login-credentials-label {
+    font-size: 12px; /* Slightly reduced font size */
+    margin-bottom: 3px; /* Reduced margin */
 }
 .login-credentials input {
     width: 100%;
-    padding: 5px;
-    margin: 5px 0;
+    padding: 6px; /* Reduced padding */
+    margin-bottom: 5px; /* Reduced margin */
     box-sizing: border-box;
 }
-.login-credentials .loggedon {
+#loginButton {
+    width: 100%;
+    padding: 8px; /* Reduced padding */
+    background-color: #ed4b06;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px; /* Slightly reduced font size */
+    margin-top: 5px; /* Reduced margin */
+}
+#loginButton:hover {
+    background-color: #45a049;
+}
+.status {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 10px; /* Add some space between login credentials and status */
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
 }
-.login-credentials .loggedon input {
-    width: auto;
-    margin-right: 5px;
+.status-left {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+    width: 100%; /* Make status-left take full width */
+    justify-content: space-between; /* Spread out the toggle and label */
+}
+#status-text {
+    font-size: 14px;
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    flex-shrink: 0;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #2196F3;
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
 }
 .footer {
     display: flex;
@@ -118,3 +203,12 @@ body {
 .footer .contact {
     font-size: 12px;
 }
+.nav-link.active {
+    background-color: #f7d2c4;
+    color: #fff;
+  }
+  
+  .nav-link:hover {
+    background-color: #eaa206;
+    color: #fff;
+  }

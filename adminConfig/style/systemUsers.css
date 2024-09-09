@@ -4,25 +4,21 @@ body {
     color: #fff;
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Navigation Styles */
 .navbar, .tabs, .header {
     display: flex;
     background-color: #505050;
-    padding: 5px;
+    padding: 10px;
 }
 
 .navbar a, .tabs a, .header a {
     color: #fff;
-    padding: 5px 10px;
+    padding: 10px 20px;
     text-decoration: none;
     border: 1px solid #000;
     margin-right: 5px;
-    font-size: 0.9em;
 }
 
 .navbar a:hover, .tabs a:hover, .header a:hover {
@@ -31,129 +27,185 @@ body {
 
 /* Specific header adjustments */
 .header {
-    justify-content: flex-start;
+    justify-content: flex-start; /* Aligns items to the start, removing space-between */
 }
 
 .header a:last-child {
-    margin-right: 0;
+    margin-right: 0; /* Removes right margin from the last item */
 }
 
-/* Main Content Styles */
 .container {
-    flex: 1;
     display: flex;
-    padding: 10px;
-    overflow: hidden;
+    height: 100vh;
 }
-
-.form-container, .main-content {
-    background-color: #4a4a4a;
-    padding: 10px;
-    overflow-y: auto;
-}
-
-.form-container {
-    flex: 0 0 300px;
-    margin-right: 10px;
-}
-
-.main-content {
-    flex: 1;
-}
-
-/* Form Styles */
-.form-group {
-    margin-bottom: 10px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 2px;
-    font-size: 0.9em;
-}
-
-.form-group input[type="text"], 
-.form-group input[type="email"], 
-.form-group input[type="date"], 
-.form-group select {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #666;
-    border-radius: 3px;
-    background-color: #333;
-    color: #fff;
-    font-size: 0.9em;
+.sidebar {
+    width: 350px;
+    background-color: #2b2b2b;
+    padding: 20px;
     box-sizing: border-box;
 }
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.sidebar label {
+    display: block;
+    margin-bottom: 5px;
+}
+.sidebar input, .sidebar select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #4a4a4a;
+    border: 1px solid #666;
+    color: #fff;
+}
+.sidebar input[type="checkbox"] {
+    width: auto;
+}
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    background-color: #666;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.main-content table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #4a4a4a;
+}
+.main-content th, .main-content td {
+    padding: 10px;
+    border: 1px solid #666;
+    text-align: left;
+}
+.main-content th {
+    background-color: #3a3a3a;
+}
+.main-content tr:nth-child(even) {
+    background-color: #5a5a5a;
+}
+.main-content tr:hover {
+    background-color: #666;
+}
+.main-content .highlight {
+    background-color: #ff0;
+    color: #000;
+}
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.search-bar input {
+    width: 200px; /* Adjust this value as needed */
+    padding: 5px;
+    background-color: #4a4a4a;
+    border: 1px solid #666;
+    color: #fff;
+}
+.search-bar button {
+    padding: 5px 10px;
+    background-color: #666;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+#deleteButton {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 10px; /* Add some space between the button and search input */
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+#deleteButton:hover {
+    background-color: #ff3333;
+}
 
-/* Checkbox specific styles */
-.form-group.checkbox {
+/* Add this CSS to align the checkbox and label */
+.checkbox-container {
     display: flex;
     align-items: center;
 }
 
-.form-group.checkbox input[type="checkbox"] {
+.checkbox-container input[type="checkbox"] {
+    margin-right: 20px;
+}
+
+#amend {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#amend + label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px; /* Adjust as needed */
+}
+
+/* Add this new style for the save button */
+#saveButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#saveButton:hover {
+    background-color: #45a049;
+}
+
+/* Add this new style for the checkbox in table headers */
+.main-content th input[type="checkbox"] {
+    width: 15px !important;
+    height: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.expiry-section {
+    font-size: 14px;
+}
+
+.expiry-section .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.expiry-section input[type="checkbox"] {
     margin-right: 5px;
 }
 
-.form-group.checkbox label {
-    display: inline;
-    margin-bottom: 0;
+.expiry-section label {
+    margin-bottom: 5px;
 }
 
-.save-button {
-    width: 100%;
-    padding: 8px;
-    background-color: #666;
-    border: 1px solid #000000;
-    border-radius: 3px;
-    cursor: pointer;
-    color: #fff;
-    font-size: 0.9em;
-}
-
-.save-button:hover {
-    background-color: #555;
-}
-
-/* Table Styles */
-.search-bar {
+.expiry-section input[type="date"] {
     margin-bottom: 10px;
-    display: flex;
-    justify-content: flex-end;
 }
 
-.search-bar input {
-    width: 20%;
-    padding: 5px;
-    border: 1px solid #666;
-    border-radius: 3px;
-    background-color: #333;
-    color: #fff;
-    font-size: 0.9em;
-}
-
-#systemUsers-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#systemUsers-table th, 
-#systemUsers-table td {
-    padding: 8px;
-    border: 1px solid #666;
-    text-align: left;
-    font-size: 0.9em;
-}
-
-#systemUsers-table th {
-    background-color: #505050;
-}
-
-#systemUsers-table tr:nth-child(even) {
-    background-color: #444;
-}
-
-#systemUsers-table tr:nth-child(odd) {
-    background-color: #4a4a4a;
-}

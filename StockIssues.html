@@ -12,6 +12,7 @@
         <a href="../index.html">HomePage</a>
         <a href="./productRegistration.html">Registration</a>
         <a href="./stockReceived.html">Inventory Management</a>
+        <a href="./excelUpload.html">Excel Upload</a>
         <a href="./configuration.html">Configuration</a>
     </div>
     <div class="tabs">
@@ -26,12 +27,12 @@
             <form id="stock-issues-form">
 
                 <label for="productName">Product Name:</label>
-                <select id="productName">
+                <select id="productName" >
                     <!-- Options will be populated from productName.js -->
                 </select>
                 
                 <label for="tradeDate">Trade Date</label>
-                <input type="date" id="tradeDate" placeholder="Enter Issue Date">
+                <input type="date" id="tradeDate" required placeholder="Enter Issue Date">
                
                 <label for="department">Department:</label>
                 <select id="department">
@@ -39,7 +40,7 @@
                 </select>
                
                 <label for="issuedQuantity">Issued Quantity</label>
-                <input type="number" id="issuedQuantity" placeholder="Enter Issued Quantity">
+                <input type="number" id="issuedQuantity" required placeholder="Enter Issued Quantity">
               
                 <label for="voucherNumber">Voucher Number</label>
                 <input type="text" id="voucherNumber" placeholder="Enter Voucher Number">
@@ -48,25 +49,28 @@
                     <input type="checkbox" id="amend" onclick="toggleAmendMode()">
                     <label for="amend" style="margin-left: 5px;">Edit Entries</label>
                 </div>
-                <button type="submit">Save Changes</button>
+                <button id="saveButton" class="btn-primary" type="submit">Save</button>
             </form>
         </div>
         <div class="main-content">
+           
             <div class="search-bar">
+                <button id="deleteButton">Delete Selected Items</button>
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
             <table id="StockIssues-table">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
                         <th>Product Name</th>
                         <th>Trade Date</th>
-                        <th>Department</th>                        
-                        <th>issued Voucher Number</th>
+                        <th>Department</th>
                         <th>Issued Quantity</th>
+                        <th>Voucher Number</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Dynamic rows will be inserted here -->
+                    <!-- Rows will be dynamically inserted here by JavaScript -->
                 </tbody>
             </table>
         </div>

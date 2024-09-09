@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrative Configuration</title>
-    <link rel="stylesheet" href="../adminConfig/Style/adminConfiguration.css">
+
+   
+  
+    <link rel="stylesheet" href="../adminConfig/Style/userRole.css">
   
 </head>
 <body>
@@ -12,6 +15,7 @@
         <a href="../index.html">HomePage</a>
         <a href="./productRegistration.html">Registration</a>
         <a href="./stockIssues.html">Inventory Management</a>
+        <a href="./excelUpload.html">Excel Upload</a>
         <a href="./configuration.html">Configuration</a>
     </nav>
 
@@ -29,48 +33,44 @@
         <a href="./auditTrail.html">Audit Trail</a>
     </nav>
 
-    <div id="userRoleContent">
-        <div class="container">
-            <div class="sidebar">
-                <label for="userRoleInput">User Role</label>
-                <input type="text" id="userRoleInput" placeholder="Enter UserRole">
+    <div class="container">
+        <div class="sidebar">
+            <form id="user-role-form">
 
-                <div class="checkbox-container">
-                    <input type="checkbox" id="amend">
-                    <label for="amend">Amend Existing Entry</label>
+                <label for="userRole">UserRole </label>
+                <input type="text" id="userRole" required placeholder="Enter UserRole ">
+                <div >
+                    <input type="checkbox" id="amend" onclick="toggleAmendMode()">
+                    <label for="amend" style="margin-left: 5px;">Edit Entries</label>
                 </div>
-                <button id="saveButton">Save Changes</button>
+                <button id="saveButton" class="btn-primary" type="submit">Save</button>
+                
+            </form>
+        </div>
+        <div class="main-content">
+           
+            <div class="search-bar">
+                <button id="deleteButton">Delete Selected Items</button>
+                <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
-            <div class="main-content">
-                <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search UserRole..." onkeyup="filterTable()">
-                </div>
-                <table id="UserRoleTable">
-                    <thead>
-                        <tr>
-                            <th>User Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+            <table id="userRole-table">
+                <thead>
+                    <tr>
+                        <th class="select-all-header"><input type="checkbox" id="selectAll"></th>
+                        <th>User Role</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically inserted here by JavaScript -->
+                </tbody>
+            </table>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          const navLinks = document.querySelectorAll('.nav-link');
-          
-          navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-              navLinks.forEach(l => l.classList.remove('active'));
-              this.classList.add('active');
-            });
-          });
-        });
-      </script>
-    <script src="../adminConfig/Script/userRole.js"></script>
    
-    <script src="../adminConfig/script/adminConfiguration.js"></script>
+   
+    <script src="../adminConfig/script/userRole.js"></script>
+   
+    
 </body>
 </html>

@@ -33,16 +33,7 @@ body {
 }
 
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-    width: 100%; /* Add this line to make the button fill its div */
-}
+
 
 
 .sidebar input[type="text"],
@@ -139,4 +130,14 @@ th {
 }
 tr:nth-child(even) {
     background-color: #444;
+}
+#saveButton {
+    background-color: #4CAF50 !important;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%; /* Add this line to make the button fill its div */
 }

@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Users</title>
-    <link rel="stylesheet" href="adminConfig/Style/systemUsers.css">
- 
+    <title>System User</title>
+    <link rel="stylesheet" href="../adminConfig/style/systemUsers.css">
+  
 </head>
-
 <body>
     <div class="navbar">
         <a href="../index.html">HomePage</a>
         <a href="./productRegistration.html">Registration</a>
         <a href="./StockReceived.html">Inventory Management</a>
+        <a href="./excelUpload.html">Excel Upload</a>
         <a href="./configuration.html">Configuration</a>
     </div>
-
     <div class="tabs">
         <a href="./passwordChange.html">Password Change</a>
         <a href="./adminConfiguration.html">Administrative Configuration</a>  
@@ -32,77 +31,74 @@
     </div>
 
     <div class="container">
-        <div class="form-container">
-          
-            <div class="form-group">
-                <label for="username">System UserName</label>
-                <input type="text" id="username" value="Hilary">
-            </div>
-            
-            <div class="form-group">
-                <label for="userrole">User Role</label>
-                <select id="userrole">
-                    <!-- Options will be populated from userRole.js -->
-                </select>              
-            </div>
-            
+        <div class="sidebar">
+            <form id="system-user-form">
 
-            <div class="form-group">
+                <label for="userName">UserName</label>
+                <input type="text" id="userName" value="" required>
+
+                <label for="userRole">User Role:</label>
+                <select id="userRole" required>
+                    <!-- Options will be populated from productName.js -->
+                </select>
+                
                 <label for="email">Email Address</label>
                 <input type="email" id="email" value="">
-            </div>
-          
-            <div class="form-group">
-                <label for="password-expiry">Password Expiry (In Month)</label>
-                <input type="text" id="password-expiry" value="">
-            </div>
-            <div class="form-group checkbox">
-                <input type="checkbox" id="specify-date">
-                <label for="specify-date">Specify Date to Override Expiry Date</label>
-            </div>
-            <div class="form-group">
-                <label for="expiry-date">Set Specific Expiry Date</label>
-                <input type="date" id="expiry-date" value="">
-            </div>
-            <div class="form-group checkbox">
-                <input type="checkbox" id="enforce-password">
-                <label for="enforce-password">Enforce Password Expiry</label>
-            </div>
-            <div class="form-group">
+
+                <label for="passwordExpiryInMonth">Password Expiry (In Month)</label>
+                <input type="text" id="passwordExpiryInMonth" value="">
+
+
+                <div class="expiry-section">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="enforce-password-expiry">
+                        <label for="enforce-password-expiry">Enforce Password Expiry</label>
+                    </div>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="specify-date">
+                        <label for="specify-date">Specify Date to Override Expiry Date</label>
+                    </div>
+                    <label for="specify-expiry-date">Set Specific Expiry Date</label>
+                    <input type="date" id="specify-expiry-date" value="">
+
+                </div>
                 <label for="idletime">IdleTime (In Minutes)</label>
-                <input type="text" id="idletime" value="">
-            </div>
-            <div class="form-group checkbox">
-                <input type="checkbox" id="amend-user">
-                <label for="amend-user">Amend System User</label>
+                <input type="text" id="idletime" value="">              
                
-            </div>
-            <div class="form-group">
-                <button class="save-button">Save Changes</button>
-            </div>
+
+                <div >
+                    <input type="checkbox" id="amend" onclick="toggleAmendMode()">
+                    <label for="amend" style="margin-left: 5px;">Edit Entries</label>
+                </div>
+                <button id="saveButton" class="btn-primary" type="submit">Save</button>
+                
+            </form>
         </div>
         <div class="main-content">
+           
             <div class="search-bar">
+                <button id="deleteButton">Delete Selected Items</button>
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
-            <table id="systemUsers-table">
+            <table id="system-user-table">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
                         <th>User Name</th>
                         <th>UserRole</th>
                         <th>Expiry Date</th>                        
                         <th>Email Address</th>
-                      
+                        <th>IdleTime</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Dynamic rows will be inserted here -->
+                    <!-- Rows will be dynamically inserted here by JavaScript -->
                 </tbody>
             </table>
         </div>
     </div>
-    <script src="adminConfig/Script/systemUsers.js"></script>
-
+    <script src="../adminConfig/script/systemUsers.js"></script>
+    
 </body>
 </html>
 

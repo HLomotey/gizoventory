@@ -12,56 +12,66 @@
         <a href="../index.html">HomePage</a>
         <a href="./productRegistration.html">Registration</a>
         <a href="./stockReceived.html">Inventory Management</a>
+        <a href="./excelUpload.html">Excel Upload</a>
         <a href="./configuration.html">Configuration</a>
     </div>
     <div class="tabs">
-        <a href="./stockReceived.html">Receive Into Inventory</a>
-        <a href="./stockIssues.html">Issue Out of Inventory</a>
-        <a href="./stockTaking.html">Stock Taking</a>
-        <a href="./stockTaking.html">Reporting</a>
+      
+            <a href="./stockReceived.html">Receive Into Inventory</a>
+            <a href="./stockIssues.html">Issue Out of Inventory</a>
+            <a href="./stockTaking.html">Stock Taking</a>
+            <a href="./stockTaking.html">Reporting</a>
     </div>
     <div class="container">
         <div class="sidebar">
-            <form id="stock-issues-form">
+            <form id="stock-received-form">
+
                 <label for="productName">Product Name:</label>
-                <select id="productName">
+                <select id="productName" >
                     <!-- Options will be populated from productName.js -->
                 </select>
                 
                 <label for="tradeDate">Trade Date</label>
-                <input type="date" id="tradeDate" placeholder="Enter Issue Date">
+                <input type="date" id="tradeDate" required placeholder="Enter Issue Date">
+               
                 <label for="receivedQuantity">Received Quantity</label>
-                <input type="number" id="receivedQuantity" placeholder="Enter received quantity">
+                <input type="number" id="receivedQuantity" required placeholder="Enter Received Quantity">
+
                 <label for="supplier">Supplier:</label>
                 <select id="supplier">
                     <!-- Options will be populated from suppliersTable.js -->
-                </select>
-                <label for="issuedQuantity">Issued Quantity</label>
-                <input type="number" id="issuedQuantity" placeholder="Enter issued quantity">
+                </select>              
+               
                 <label for="price">Price</label>
-                <input type="number" id="price" placeholder="Enter Unit Price of Stock">
+                <input type="number" id="price" required placeholder="Enter Price">
+
+
                 <label for="voucherNumber">Voucher Number</label>
                 <input type="text" id="voucherNumber" placeholder="Enter Voucher Number">
-                <label for="wayBillNumber">Way Bill Number</label>
-                <input type="text" id="wayBillNumber" placeholder="Enter Way Bill Number">
-             
+
+                <label for="wayBill">Way Bill Number</label>
+                <input type="text" id="wayBill" placeholder="Enter Way Bill Number">
+
                 <div >
                     <input type="checkbox" id="amend" onclick="toggleAmendMode()">
                     <label for="amend" style="margin-left: 5px;">Edit Entries</label>
                 </div>
-                <button type="submit">Save Changes</button>
+                <button id="saveButton" class="btn-primary" type="submit">Save</button>
+                
             </form>
         </div>
         <div class="main-content">
+           
             <div class="search-bar">
+                <button id="deleteButton">Delete Selected Items</button>
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
-            <table id="StockIssues-table">
+            <table id="StockReceived-table">
                 <thead>
                     <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
                         <th>Product Name</th>
                         <th>Trade Date</th>
-                        <th>Issued Quantity</th>
                         <th>Received Quantity</th>
                         <th>Supplier</th>
                         <th>Price</th>
@@ -70,12 +80,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Dynamic rows will be inserted here -->
+                    <!-- Rows will be dynamically inserted here by JavaScript -->
                 </tbody>
             </table>
         </div>
     </div>
-    <script src="../inventory/script/stockReceived.js"></script> 
+    <script src="../inventory/script/stockReceived.js"></script>
+    
 </body>
 </html>
 

@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function saveSuppliers() {
+    localStorage.setItem('suppliers', JSON.stringify(suppliers));
+    console.log('Suppliers saved:', suppliers); // Add this line for verification
+}
+
 function saveChanges() {
     
 
@@ -53,7 +58,7 @@ function saveChanges() {
     }
 
     // Save to localStorage
-    localStorage.setItem('suppliers', JSON.stringify(suppliers));
+    saveSuppliers();
 
     // Clear the form and reset selectedRow
     clearForm();
@@ -185,7 +190,7 @@ function deleteSelectedSuppliers() {
             suppliers.splice(index, 1);
         });
 
-        localStorage.setItem('suppliers', JSON.stringify(suppliers));
+        saveSuppliers();
         updateTable();
         showMessage(`${checkboxes.length} item(s) have been deleted.`);
     }

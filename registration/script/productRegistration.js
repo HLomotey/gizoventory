@@ -1,79 +1,102 @@
 document.addEventListener('DOMContentLoaded', function() {
-    populateProductCategories();
-    updateTable();
+    init();
 
-    document.querySelector('#productCategory').addEventListener('change', function() {
-        window.location.href = './productCategory.html';
-    });
-
-    // Add event listener for the new amend checkbox
-    document.getElementById('amend').addEventListener('change', toggleAmendMode);
-
-    // Add event listener for the select all checkbox
-    document.getElementById('selectAll').addEventListener('change', function() {
-        const checkboxes = document.querySelectorAll('#products-table tbody input[type="checkbox"]');
-        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-    });
-
-    // Add event listener for the delete button
-    document.getElementById('deleteButton').addEventListener('click', deleteSelectedProducts);
-});
-
-document.getElementById('product-registration-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    saveChanges();
-});
-
-function saveChanges() {
-    const productCategory = document.getElementById('productCategory').value;
-    const productName = document.getElementById('productName').value;
-    const unitOfIssue = document.getElementById('unitOfIssue').value;
-    const reorderQuantity = document.getElementById('reorderQuantity').value;
-    const productImage = document.getElementById('productImage').files[0];
-
-    if (!productCategory || !productName) {
-        alert('Please fill in the product name and category.');
-        return;
+    const productRegistrationForm = document.getElementById('product-registration-form');
+    if (productRegistrationForm) {
+        productRegistrationForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            saveChanges();
+        });
     }
 
-    const product = {
-        category: productCategory,
-        name: productName,
-        unitOfIssue: unitOfIssue,
-        reorderQuantity: reorderQuantity,
-        image: productImage ? URL.createObjectURL(productImage) : null
-    };
-
-    if (isAmendMode && selectedProductIndex > -1) {
-        // Update existing product
-        products[selectedProductIndex] = product;
-    } else {
-        // Add new product
-        products.push(product);
+    const selectAllCheckbox = document.getElementById('selectAll');
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('#products-table tbody input[type="checkbox"]');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        });
     }
 
-    // Save products to local storage
-    localStorage.setItem('products', JSON.stringify(products));
+    const deleteButton = document.getElementById('deleteButton');
+    if (deleteButton) {
+        deleteButton.addEventListener('click', deleteSelectedProducts);
+    }
 
-    updateTable();
-    clearForm();
-    
-}
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', filterTable);
+    }
 
-// Global variables
-let products = JSON.parse(localStorage.getItem('products') || '[]');
+    const amendCheckbox = document.getElementById('amend');
+    if (amendCheckbox) {
+        amendCheckbox.addEventListener('change', toggleAmendMode);
+    }
+});
+
+let products = [];
 let isAmendMode = false;
 let selectedProductIndex = -1;
 
-// Function to navigate between pages
-/*
-function navigate(page) {
-    // Implement navigation logic here
-    console.log(`Navigating to ${page}`);
+function init() {
+    products = JSON.parse(localStorage.getItem('products') || '[]');
+    populateProductCategories();
+    updateTable();
 }
-*/
 
-// Function to toggle amend mode
+function saveChanges() {
+    const category = document.getElementById('productCategoryatreg').value;
+    const name = document.getElementById('main-product-name').value;
+    const unitOfIssue = document.getElementById('unitOfIssue').value;
+    const reorderQuantity = document.getElementById('reorderQuantity').value;
+
+    if (!category || !name ) {
+        alert('Please fill Product Category and Product Name to proceed');
+        return;
+    }
+
+    const newProduct = { category, name, unitOfIssue, reorderQuantity };
+
+    if (isAmendMode && selectedProductIndex !== -1) {
+        products[selectedProductIndex] = newProduct;
+    } else {
+        products.push(newProduct);
+    }
+
+    localStorage.setItem('products', JSON.stringify(products));
+    updateTable();
+    clearForm();
+}
+
+function getSelectedProducts() {
+    const checkboxes = document.querySelectorAll('#products-table tbody input[type="checkbox"]:checked');
+    return Array.from(checkboxes).map(checkbox => parseInt(checkbox.dataset.index));
+}
+
+function deleteSelectedProducts() {
+    const selectedIndexes = getSelectedProducts();
+    if (selectedIndexes.length === 0) {
+        alert('Please select at least one product to delete.');
+        return;
+    }
+
+    if (confirm(`Are you sure you want to delete ${selectedIndexes.length} selected product(s)?`)) {
+        products = products.filter((_, index) => !selectedIndexes.includes(index));
+        localStorage.setItem('products', JSON.stringify(products));
+        updateTable();
+        clearForm();
+    }
+}
+
+function filterTable() {
+    const searchInput = document.getElementById('search-input').value.toLowerCase();
+    const tableRows = document.querySelectorAll('#products-table tbody tr');
+
+    tableRows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(searchInput) ? '' : 'none';
+    });
+}
+
 function toggleAmendMode() {
     isAmendMode = document.getElementById('amend').checked;
     if (!isAmendMode) {
@@ -81,19 +104,16 @@ function toggleAmendMode() {
     }
 }
 
-// Function to clear the form
 function clearForm() {
-    document.getElementById('productCategory').value = '';
-    document.getElementById('productName').value = '';
+    document.getElementById('productCategoryatreg').value = '';
+    document.getElementById('main-product-name').value = '';
     document.getElementById('unitOfIssue').value = '';
     document.getElementById('reorderQuantity').value = '';
-    document.getElementById('productImage').value = '';
-    document.getElementById('amend').checked = false; // Uncheck the amend checkbox
+    document.getElementById('amend').checked = false;
     isAmendMode = false;
     selectedProductIndex = -1;
 }
 
-// Function to update the table with current products
 function updateTable() {
     const tableBody = document.querySelector('#products-table tbody');
     tableBody.innerHTML = '';
@@ -116,35 +136,21 @@ function updateTable() {
     });
 }
 
-// Function to select a product for editing
 function selectProduct(index) {
     const product = products[index];
-    document.getElementById('productCategory').value = product.category;
-    document.getElementById('productName').value = product.name;
+    document.getElementById('productCategoryatreg').value = product.category;
+    document.getElementById('main-product-name').value = product.name;
     document.getElementById('unitOfIssue').value = product.unitOfIssue;
     document.getElementById('reorderQuantity').value = product.reorderQuantity;
-    document.getElementById('amend').checked = true; // Check the amend checkbox
+    document.getElementById('amend').checked = true;
     isAmendMode = true;
     selectedProductIndex = index;
 }
 
-// Function to filter the table based on search input
-function filterTable() {
-    const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const tableRows = document.querySelectorAll('#products-table tbody tr');
-
-    tableRows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(searchInput) ? '' : 'none';
-    });
-}
-
-// Function to populate product categories
 function populateProductCategories() {
-    const select = document.getElementById('productCategory');
-    select.innerHTML = ''; // Clear existing options
+    const select = document.getElementById('productCategoryatreg');
+    select.innerHTML = '';
 
-    // Get categories from localStorage
     const categories = JSON.parse(localStorage.getItem('productCategories') || '[]');
 
     categories.forEach(category => {
@@ -156,66 +162,5 @@ function populateProductCategories() {
 
     if (categories.length === 0) {
         console.warn('No categories found in localStorage.');
-    }
-}
-
-// Function to observe changes in the category table
-function observeCategoryTable() {
-    const categoryTable = document.getElementById('categoryTable');
-    if (!categoryTable) {
-        console.warn('Category table not found. This is expected on the Product Registration page.');
-        return;
-    }
-
-    const observer = new MutationObserver(() => {
-        populateProductCategories();
-    });
-
-    observer.observe(categoryTable, { childList: true, subtree: true });
-}
-
-// Update the init function to load products from local storage
-function init() {
-    // Load products from local storage
-    products = JSON.parse(localStorage.getItem('products') || '[]');
-
-    populateProductCategories();
-    observeCategoryTable(); // Add this line
-    updateTable();
-}
-
-// Call init when the page loads
-window.onload = init;
-
-// Add an event listener to update categories when returning to this page
-window.addEventListener('focus', populateProductCategories);
-
-// Debug code to check tab visibility
-document.addEventListener('DOMContentLoaded', function() {
-    const tabs = document.querySelectorAll('.tabs a');
-    tabs.forEach(tab => {
-        console.log(`Tab "${tab.textContent}" is visible:`, tab.offsetParent !== null);
-    });
-});
-
-// Add this new function to get selected products
-function getSelectedProducts() {
-    const checkboxes = document.querySelectorAll('#products-table tbody input[type="checkbox"]:checked');
-    return Array.from(checkboxes).map(checkbox => products[checkbox.dataset.index]);
-}
-
-// Add this new function to delete selected products
-function deleteSelectedProducts() {
-    const selectedProducts = getSelectedProducts();
-    if (selectedProducts.length === 0) {
-        alert('Please select at least one product to delete.');
-        return;
-    }
-
-    if (confirm(`Are you sure you want to delete ${selectedProducts.length} selected product(s)?`)) {
-        products = products.filter(product => !selectedProducts.includes(product));
-        localStorage.setItem('products', JSON.stringify(products));
-        updateTable();
-        clearForm();
     }
 }

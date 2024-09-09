@@ -1,29 +1,38 @@
+// stockIssue.js
 document.addEventListener('DOMContentLoaded', () => {
     initializePage();
 });
 
-function initializePage() {
-    // Load system users from local storage (if needed)
-    systemUsers = JSON.parse(localStorage.getItem('systemUsers') || '[]');
-
-    populateUserRoles();
-    observeUserRolesTable();
-    updateTable();
-}
-
-document.querySelector('.save-button').addEventListener('click', (event) => {
+document.getElementById('system-user-form').addEventListener('submit', (event) => {
     event.preventDefault();
     saveChanges();
 });
 
+function initializePage() {
+   // setInitialUserRoles();
+    populateUserRole();
+    loadSystemUsers();
+    
+    // Add event listener for the "Select All" checkbox
+    const selectAllCheckbox = document.getElementById('selectAll');
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', toggleAllProducts);
+    }
+    
+    const deleteButton = document.getElementById('deleteButton');
+    if (deleteButton) {
+        deleteButton.addEventListener('click', deleteSelectedItems);
+    }
+}
+
 // Global variables
 let systemUsers = [];
 let isAmendMode = false;
-let selectedUserIndex = -1;
+let selectedSystemUserIndex = -1;
 
 // Function to toggle amend mode
 function toggleAmendMode() {
-    isAmendMode = document.getElementById('amend-user').checked;
+    isAmendMode = document.getElementById('amend').checked;
     if (!isAmendMode) {
         clearForm();
     }
@@ -31,52 +40,46 @@ function toggleAmendMode() {
 
 // Function to clear the form
 function clearForm() {
-    const fields = ['username', 'userrole', 'email', 'password-expiry', 'expiry-date', 'idletime'];
+        const fields = ['userName', 'userRole', 'email', 'passwordExpiryInMonth','idletime'];
     fields.forEach(field => document.getElementById(field).value = '');
-    document.getElementById('amend-user').checked = false;
-    document.getElementById('specify-date').checked = false;
-    document.getElementById('enforce-password').checked = false;
+    document.getElementById('amend').checked = false;
     isAmendMode = false;
-    selectedUserIndex = -1;
+    selectedSystemUserIndex = -1;
 }
 
-// Function to update the table with current system users
+// Function to update the table with current stock issues
 function updateTable() {
-    const tableBody = document.querySelector('#systemUsers-table tbody');
+    const tableBody = document.querySelector('#system-user-table tbody');
     tableBody.innerHTML = '';
 
-    systemUsers.forEach((user, index) => {
+        systemUsers.forEach((user, index) => {
         const row = tableBody.insertRow();
         row.innerHTML = `
-            <td>${user.username}</td>
-            <td>${user.userrole}</td>
-            <td>${user.expiryDate || 'N/A'}</td>
+            <td><input type="checkbox" class="row-checkbox" data-index="${index}"></td>
+            <td>${user.userName}</td>
+            <td>${user.userRole}</td>
             <td>${user.email}</td>
+            <td>${user.passwordExpiryInMonth || '5'}</td>     
+            <td>${user.idletime || '5'}</td>         
         `;
-        row.addEventListener('click', () => selectUser(index));
+        row.addEventListener('click', () => selectSystemUser(index));
     });
 }
 
-// Function to select a user for editing
-function selectUser(index) {
+// Function to select a stock issue for editing
+function selectSystemUser(index) {
     const user = systemUsers[index];
-    document.getElementById('username').value = user.username;
-    document.getElementById('userrole').value = user.userrole;
-    document.getElementById('email').value = user.email;
-    document.getElementById('password-expiry').value = user.passwordExpiry;
-    document.getElementById('expiry-date').value = user.expiryDate;
-    document.getElementById('idletime').value = user.idleTime;
-    document.getElementById('amend-user').checked = true;
-    document.getElementById('specify-date').checked = user.specifyDate;
-    document.getElementById('enforce-password').checked = user.enforcePassword;
+    const fields = ['userName', 'userRole', 'email', 'passwordExpiryInMonth','idletime'];
+    fields.forEach(field => document.getElementById(field).value = user[field]);
+    document.getElementById('amend').checked = true;
     isAmendMode = true;
-    selectedUserIndex = index;
+    selectedSystemUserIndex = index;
 }
 
 // Function to filter the table based on search input
 function filterTable() {
     const searchInput = document.getElementById('search-input').value.toLowerCase();
-    const tableRows = document.querySelectorAll('#systemUsers-table tbody tr');
+        const tableRows = document.querySelectorAll('#system-user-table tbody tr');
 
     tableRows.forEach(row => {
         const text = row.textContent.toLowerCase();
@@ -85,80 +88,106 @@ function filterTable() {
 }
 
 // Function to populate user roles
-function populateUserRoles() {
-    const select = document.getElementById('userrole');
-    select.innerHTML = ''; // Clear existing options
+function populateUserRole() {
+    const userRoleDropdown = document.getElementById('userRole');
+    
+    // Fetch the user role data from localStorage
+    const savedUserRoles = localStorage.getItem('userRoles');
+    
+    console.log('Saved user roles:', savedUserRoles);
 
-    // Get user roles from localStorage
-    const userRoles = JSON.parse(localStorage.getItem('userRoles') || '[]');
+    if (savedUserRoles) {
+        const userRoles = JSON.parse(savedUserRoles);
+        
+        console.log('Parsed user roles:', userRoles);
 
-    userRoles.forEach(role => {
-        const option = document.createElement('option');
-        option.value = role.roleName; 
-        option.textContent = role.roleName;
-        select.appendChild(option);
-    });
-
-    if (userRoles.length === 0) {
-        console.warn('No user roles found in localStorage.');
-        const defaultOption = document.createElement('option');
-        defaultOption.textContent = 'No roles available';
-        select.appendChild(defaultOption);
+        // Clear existing options
+        userRoleDropdown.innerHTML = '<option value="">Select User Role</option>';
+        
+        userRoles.forEach((userRole, index) => {
+            console.log(`User role ${index}:`, userRole);
+            const option = document.createElement('option');
+            option.value = userRole.userRole;
+            option.textContent = userRole.userRole;
+            console.log('Adding option:', option.value, option.textContent);
+            userRoleDropdown.appendChild(option);
+        });
+    } else {
+        console.error('No user roles found in localStorage');
     }
 }
 
-// Function to observe changes in the user roles table
-function observeUserRolesTable() {
-    const userRolesTable = document.getElementById('userRoleTable');
-    if (!userRolesTable) {
-        console.warn('User roles table not found. This is expected on the System Users page.');
-        return;
+// Add this function to load stock issues
+function loadSystemUsers() {
+    const savedSystemUsers = localStorage.getItem('systemUsers');
+    if (savedSystemUsers) {
+        systemUsers = JSON.parse(savedSystemUsers);
+        updateTable();
     }
-
-    const observer = new MutationObserver(() => {
-        populateUserRoles();
-    });
-
-    observer.observe(userRolesTable, { childList: true, subtree: true });
 }
 
-// Function to save changes (new user or update existing user)
+// Function to save changes
 function saveChanges() {
-    const user = {
-        username: document.getElementById('username').value,
-        userrole: document.getElementById('userrole').value,
-        email: document.getElementById('email').value,
-        passwordExpiry: document.getElementById('password-expiry').value,
-        expiryDate: document.getElementById('expiry-date').value,
-        idleTime: document.getElementById('idletime').value,
-        specifyDate: document.getElementById('specify-date').checked,
-        enforcePassword: document.getElementById('enforce-password').checked
+    const userName = document.getElementById('userName').value;
+    const userRole = document.getElementById('userRole').value;   
+    const email = document.getElementById('email').value;
+    let passwordExpiryInMonth = document.getElementById('passwordExpiryInMonth').value;
+    let idletime = document.getElementById('idletime').value;
+
+    // Set default values if null or empty
+    passwordExpiryInMonth = passwordExpiryInMonth || '5';
+    idletime = idletime || '5';
+
+    const newSystemUser = {
+        userName,
+        userRole,
+        email,
+        passwordExpiryInMonth,
+        idletime
     };
 
-    if (!user.username || !user.userrole) {
-        alert('Please fill in at least the username and user role.');
-        return;
-    }
-
-    if (isAmendMode && selectedUserIndex !== -1) {
-        systemUsers[selectedUserIndex] = user;
+    if (isAmendMode && selectedSystemUserIndex !== -1) {
+        systemUsers[selectedSystemUserIndex] = newSystemUser;
     } else {
-        systemUsers.push(user);
+        systemUsers.push(newSystemUser);
     }
 
     localStorage.setItem('systemUsers', JSON.stringify(systemUsers));
-
     updateTable();
     clearForm();
+    //alert('Stock issue saved successfully');
 }
 
-// Call initializePage when the page loads
-window.addEventListener('DOMContentLoaded', initializePage);
-window.addEventListener('focus', initializePage);
+// Add these new functions
+function toggleAllProducts(event) {
+    const checkboxes = document.querySelectorAll('.row-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = event.target.checked;
+    });
+}
 
-// Add this temporarily to test user role population
-localStorage.setItem('userRoles', JSON.stringify([
-    { roleName: 'Admin' },
-    { roleName: 'User' },
-    { roleName: 'Manager' }
-]));
+function deleteSelectedItems() {
+    const selectedCheckboxes = document.querySelectorAll('.row-checkbox:checked');
+    const indicesToRemove = Array.from(selectedCheckboxes).map(checkbox => 
+        parseInt(checkbox.getAttribute('data-index'))
+    ).sort((a, b) => b - a);
+
+    indicesToRemove.forEach(index => {
+        systemUsers.splice(index, 1);
+    });
+
+    localStorage.setItem('systemUsers', JSON.stringify(systemUsers));
+    updateTable();
+}
+/*
+function setInitialUserRoles() {
+    const initialUserRoles = [
+        { name: 'Admin' },
+        { name: 'User' },
+        { name: 'Manager' }
+    ];
+    if (!localStorage.getItem('userRoles')) {
+        localStorage.setItem('userRoles', JSON.stringify(initialUserRoles));
+    }
+}
+    */

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Role</title>
-    <link rel="stylesheet" href="../adminConfig/style/userRole.css">
+    <title>Audit Trail</title>
+    <link rel="stylesheet" href="../adminConfig/style/systemUsers.css">
   
 </head>
 <body>
@@ -31,31 +31,22 @@
     </div>
 
     <div class="container">
-        <div class="sidebar">
-            <form id="user-role-form">
-
-                <label for="userRole">UserRole </label>
-                <input type="text" id="userRole" required placeholder="Enter UserRole ">
-                <div >
-                    <input type="checkbox" id="amend" onclick="toggleAmendMode()">
-                    <label for="amend" style="margin-left: 5px;">Edit Entries</label>
-                </div>
-                <button id="saveButton" class="btn-primary" type="submit">Save</button>
-                
-            </form>
-        </div>
+       
         <div class="main-content">
            
             <div class="search-bar">
-                <button id="deleteButton">Delete Selected Items</button>
+              
                 <input type="text" id="search-input" placeholder="Enter text to search..." onkeyup="filterTable()">
             </div>
-            <table id="userRole-table">
+            <table id="auditTrailTable">
                 <thead>
                     <tr>
-                        <th class="select-all-header"><input type="checkbox" id="selectAll"></th>
-                        <th>User Role</th>
-                      
+                       
+                        <th>Activity DateTime</th>
+                        <th>Transaction Date</th>
+                        <th>User Name</th>                        
+                        <th>Action Taken</th>
+                        <th>Computer Name</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +55,7 @@
             </table>
         </div>
     </div>
-    <script src="../adminConfig/script/userRole.js"></script>
+    <script src="../adminConfig/script/systemUsers.js"></script>
     
 </body>
 </html>

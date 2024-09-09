@@ -57,11 +57,37 @@ document.addEventListener('DOMContentLoaded', function() {
             checkbox.checked = this.checked;
         });
     });
+
+       // Call populateUserRole when the DOM content is loaded
+       populateUserRole();
 });
-/*
-//Highlight the selected tab
-document.querySelectorAll('.header-link').forEach(link => {
-    link.addEventListener('click', function() {
-        document.querySelectorAll('.header-link').forEach(link => link.classList.remove('active'));
-        this.classList.add('active');
-*/
+
+// Function to populate user roles
+function populateUserRole() {
+    const userRoleDropdown = document.getElementById('userRole');
+    
+    // Fetch the user role data from localStorage
+    const savedUserRoles = localStorage.getItem('userRoles');
+    
+    console.log('Saved user roles:', savedUserRoles);
+
+    if (savedUserRoles) {
+        const userRoles = JSON.parse(savedUserRoles);
+        
+        console.log('Parsed user roles:', userRoles);
+
+        // Clear existing options
+        userRoleDropdown.innerHTML = '<option value="">Select User Role</option>';
+        
+        userRoles.forEach((userRole, index) => {
+            console.log(`User role ${index}:`, userRole);
+            const option = document.createElement('option');
+            option.value = userRole.userRole;
+            option.textContent = userRole.userRole;
+            console.log('Adding option:', option.value, option.textContent);
+            userRoleDropdown.appendChild(option);
+        });
+    } else {
+        console.error('No user roles found in localStorage');
+    }
+}

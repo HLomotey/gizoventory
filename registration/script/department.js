@@ -15,7 +15,7 @@ function loadDepartments() {
         row.appendChild(checkboxCell);
 
         const departmentCell = document.createElement('td');
-        departmentCell.textContent = department;
+        departmentCell.textContent = department.name;
         row.appendChild(departmentCell);
 
         tableBody.appendChild(row);
@@ -26,7 +26,7 @@ function loadDepartments() {
 
 function addDepartment(departmentName) {
     const departments = JSON.parse(localStorage.getItem('departments') || '[]');
-    departments.push(departmentName);
+    departments.push({ name: departmentName });
     localStorage.setItem('departments', JSON.stringify(departments));
     loadDepartments();
 }
@@ -38,7 +38,7 @@ function saveChanges() {
     if (document.getElementById("amend").checked && selectedRow) {
         const departments = JSON.parse(localStorage.getItem('departments') || '[]');
         const index = Array.from(selectedRow.parentNode.children).indexOf(selectedRow) - 1;
-        departments[index] = departmentName;
+        departments[index] = { name: departmentName };
         localStorage.setItem('departments', JSON.stringify(departments));
     } else {
         addDepartment(departmentName);
@@ -95,7 +95,19 @@ function deleteSelectedItems() {
         return;
     }
 
-    showDeleteModal();
+    if (confirm('Are you sure you want to delete the selected departments?')) {
+        const departments = JSON.parse(localStorage.getItem('departments') || '[]');
+        const indicesToRemove = Array.from(checkboxes).map(checkbox => 
+            Array.from(checkbox.closest('tr').parentNode.children).indexOf(checkbox.closest('tr'))
+        ).sort((a, b) => b - a);
+
+        indicesToRemove.forEach(index => {
+            departments.splice(index, 1);
+        });
+
+        localStorage.setItem('departments', JSON.stringify(departments));
+        loadDepartments();
+    }
 }
 
 function confirmDelete() {
@@ -114,6 +126,7 @@ function confirmDelete() {
     hideDeleteModal();
 }
 
+/*
 function showDeleteModal() {
     const modal = document.getElementById('deleteModal');
     modal.style.display = 'block';
@@ -123,6 +136,7 @@ function hideDeleteModal() {
     const modal = document.getElementById('deleteModal');
     modal.style.display = 'none';
 }
+    */
 
 // Call loadDepartments when the page loads
 window.onload = function() {
@@ -150,9 +164,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Update this line to use the correct function name
     document.getElementById('deleteButton').addEventListener('click', deleteSelectedItems);
-    document.getElementById('deleteModal .close').addEventListener('click', hideDeleteModal);
-    document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
-    document.getElementById('cancelDelete').addEventListener('click', hideDeleteModal);
 });
+
+// In your department registration script
+function saveDepartment(department) {
+    let departments = JSON.parse(localStorage.getItem('departments')) || [];
+    departments.push(department);
+    localStorage.setItem('departments', JSON.stringify(departments));
+}
 
